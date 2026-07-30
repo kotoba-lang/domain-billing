@@ -1,0 +1,15 @@
+{:paths ["src"]
+ ;; kotoba-lang/srs supplies the events this library folds into a ledger. The
+ ;; dependency points one way on purpose: billing reads srs, srs knows nothing
+ ;; about money.
+ :deps {io.github.kotoba-lang/srs {:git/sha "b239cde4144b925a4cc6a2a9153b7988e41f8681"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]
+         :exec-fn cognitect.test-runner.api/test}
+  :lint {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2024.11.14"}}
+         :main-opts ["-m" "clj-kondo.main" "--lint" "src" "test"
+                     "--fail-level" "error"]}
+  :dev {:override-deps {io.github.kotoba-lang/srs {:local/root "../srs"}}}}}
