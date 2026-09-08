@@ -34,7 +34,7 @@
   ledger entries and a balance; taking money is a deployment's job, and it is a
   regulated one. Keeping the boundary here means this library holds nothing that
   needs a vault."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ── money ─────────────────────────────────────────────────────────────────
 
@@ -109,7 +109,7 @@
   (get-in book [tld action]))
 
 (defn- tld-of [domain-name]
-  (let [ls (str/split (str/lower-case (str domain-name)) #"\.")]
+  (let [ls (str/split (str/lower (str domain-name)) #"\.")]
     (when (> (count ls) 1) (last ls))))
 
 (defn- tld-entry
