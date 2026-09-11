@@ -99,7 +99,7 @@ registrar's account.
 ## Test
 
 ```
-clojure -M:test
+kbb -M:test
 ```
 
 15 tests / 42 assertions, driven by events from a real `srs` registry rather
